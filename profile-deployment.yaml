@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: profile
+  name: profile
+  namespace: app-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: profile
+  template:
+    metadata:
+      labels:
+        app: profile
+    spec:
+      containers:
+      - image: nginx
+        name: profile
+        resources: {}
+        envFrom:
+          - secretRef:
+             name: profile-creds
+status: {}

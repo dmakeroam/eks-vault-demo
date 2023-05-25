@@ -1,0 +1,16 @@
+apiVersion: secrets.hashicorp.com/v1alpha1
+kind: VaultAuth
+metadata:
+  name: profile-app
+  namespace: vault-secrets-operator-system
+spec:
+  kubernetes:
+    audiences:
+    - vault
+    role: backend-dev-profile
+    serviceAccount: profile
+    tokenExpirationSeconds: 600
+  method: kubernetes
+  mount: kubernetes
+  namespace: app-dev
+  vaultConnectionRef: default
